@@ -13,7 +13,7 @@ export function Filters({ onFilter }: Props) {
 
   return (
     <Container>
-      <Title>Filtre pelo status do chamado</Title>
+      <Title>Filtrar</Title>
 
       <Options>
         <Filter

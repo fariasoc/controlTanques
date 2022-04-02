@@ -47,7 +47,7 @@ export function Order({ data }: Props) {
           <Info>
             <MaterialIcons name="schedule" size={16} color={theme.COLORS.SUBTEXT} />
             <Label>
-              20/01/22 às 14h
+            {data.status}
             </Label>
           </Info>
 
