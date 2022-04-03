@@ -23,7 +23,7 @@ export function Filters({ onFilter }: Props) {
         />
 
         <Filter
-          title="Encerrados"
+          title="Fechados"
           backgroundColor={theme.COLORS.PRIMARY}
           onPress={() => onFilter('closed')}
         />

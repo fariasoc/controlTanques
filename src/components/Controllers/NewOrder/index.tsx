@@ -14,7 +14,7 @@ export function NewOrder() {
 
   return (
     <>
-      <Button title="Novo chamado" onPress={handleSnapPress} />
+      <Button title="Inserir movimentação" onPress={handleSnapPress} />
 
       <BottomSheetModalProvider>
         <BottomSheetModal

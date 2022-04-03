@@ -15,8 +15,8 @@ export function Header() {
   return (
     <Container>
       <Greeting>
-        <Title>HelpDesk</Title>
-        <SubTitle>Conte conosco, estamos aqui para ajudar.</SubTitle>
+        <Title>Controle Patrimonial</Title>
+        <SubTitle> Tanques | Linhas de Carregamento | Balanças </SubTitle>
       </Greeting>
 
       <LogoutButton onPress={handleSignOut} />
