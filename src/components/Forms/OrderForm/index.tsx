@@ -11,6 +11,8 @@ import { Alert } from 'react-native';
 export function OrderForm() {
   const [patrimony, setPatrimony] = useState('');
   const [description, setDescription] = useState('');
+  const [responsavelOperacao, setResponsavelOperacao] = useState('');
+  const [responsavelEstoque, setResponsavelEstoque] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   function handleNewOrder() {
@@ -21,6 +23,8 @@ export function OrderForm() {
     .add({
       patrimony,
       description,
+      responsavelOperacao,
+      responsavelEstoque,
       status: 'open',
       created_at: firestore.FieldValue.serverTimestamp()
     })
@@ -33,6 +37,8 @@ export function OrderForm() {
     <Form>
       <Title>Nova movimentação</Title>
       <Input placeholder="Número do lacre" onChangeText={setPatrimony} />
+      <Input placeholder="Responsável Operacional" onChangeText={setResponsavelOperacao} />
+      <Input placeholder="Responsável do Controle de Estoque" onChangeText={setResponsavelEstoque} />
       <TextArea placeholder="Descrição" onChangeText={setDescription} />
 
       <Button title="Enviar" isLoading={isLoading} onPress={handleNewOrder} />
