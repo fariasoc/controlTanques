@@ -20,6 +20,11 @@ export type OrderProps = OrderStyleProps & {
   patrimony: string;
   equipment: string;
   description: string;
+  lacre: string;
+  responsavelEstoque: string;
+  responsavelOperacao: string;
+  status: string;
+  created_at: string;
 }
 
 type Props = {
@@ -35,9 +40,9 @@ export function Order({ data }: Props) {
 
       <Content>
         <Header>
-          <Title> {data.description} </Title>
+          <Title> {data.patrimony} </Title>
           <MaterialIcons
-            name={data.status === "open" ? "hourglass-empty" : "check-circle"}
+            name={data.status === "open" ? "lock-open" : "check-circle"}
             size={24}
             color={data.status === "open" ? theme.COLORS.SECONDARY : theme.COLORS.PRIMARY}
           />
@@ -45,16 +50,23 @@ export function Order({ data }: Props) {
 
         <Footer>
           <Info>
-            <MaterialIcons name="schedule" size={16} color={theme.COLORS.SUBTEXT} />
+            <MaterialIcons name="lock-open" size={16} color={theme.COLORS.SUBTEXT} />
             <Label>
             {data.status}
             </Label>
           </Info>
 
           <Info>
+            <MaterialIcons name="person" size={16} color={theme.COLORS.SUBTEXT} />
+            <Label>
+            {data.responsavelEstoque}
+            </Label>
+          </Info>
+
+          <Info>
             <MaterialIcons name="my-location" size={16} color={theme.COLORS.SUBTEXT} />
             <Label>
-            {data.patrimony}
+            {data.lacre}
             </Label>
           </Info>
         </Footer>
