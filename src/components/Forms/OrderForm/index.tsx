@@ -35,9 +35,24 @@ export function OrderForm() {
     .finally(() => setIsLoading(false))
   }
 
+  function handleUpdateOrder() {
+    setIsLoading(true);
+
+    firestore()
+    .collection('orders')
+    .doc('KKh2xeZgGZlSHBmWU2fF')
+    .update({
+      status: 'close',
+      created_at: firestore.FieldValue.serverTimestamp()
+    })
+    .then(() => Alert.alert("Atualizado", "Documento atualizado!") )
+    .catch((error) => console.log(error))
+    .finally(() => setIsLoading(false))
+  }
+
 /*<TextArea placeholder="Observações" onChangeText={setDescription} />*/
 
-  return (
+  return ( 
     <Form>
       <Title>Nova movimentação</Title>
       <Input placeholder="Equipamento" onChangeText={setPatrimony} />
@@ -47,6 +62,7 @@ export function OrderForm() {
       <Input placeholder="Observações" onChangeText={setDescription} />
 
       <Button title="Enviar" isLoading={isLoading} onPress={handleNewOrder} />
+      
     </Form>
   );
 
