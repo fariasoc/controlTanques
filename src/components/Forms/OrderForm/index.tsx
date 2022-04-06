@@ -42,10 +42,22 @@ export function OrderForm() {
     .collection('orders')
     .doc('KKh2xeZgGZlSHBmWU2fF')
     .update({
-      status: 'close',
+      status: 'closed',
       created_at: firestore.FieldValue.serverTimestamp()
     })
     .then(() => Alert.alert("Atualizado", "Documento atualizado!") )
+    .catch((error) => console.log(error))
+    .finally(() => setIsLoading(false))
+  }
+
+  function handleDeleteOrder() {
+    setIsLoading(true);
+
+    firestore()
+    .collection('orders')
+    .doc('K4hvKlaULZPxHC71rsMJ')
+    .delete()
+    .then(() => Alert.alert("Deletado", "Documento Deletado!") )
     .catch((error) => console.log(error))
     .finally(() => setIsLoading(false))
   }
@@ -62,7 +74,11 @@ export function OrderForm() {
       <Input placeholder="Observações" onChangeText={setDescription} />
 
       <Button title="Enviar" isLoading={isLoading} onPress={handleNewOrder} />
-      
+      <Button title="Editar" isLoading={isLoading} onPress={handleUpdateOrder} />
+
+     
+      <Button title="Apagar" isLoading={isLoading} onPress={handleDeleteOrder} />
+    
     </Form>
   );
 
