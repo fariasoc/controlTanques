@@ -2,6 +2,8 @@ import React from 'react';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useTheme } from 'styled-components/native';
 
+import firestore from '@react-native-firebase/firestore'
+
 import {
   Container,
   Status,
@@ -13,7 +15,11 @@ import {
   Footer,
   OrderStyleProps
 } from './styles';
+import { Alert, Button } from 'react-native';
 
+
+/* 
+              <Button title="Inserir movimentação" onPress={handleUpdateOrder} /> */
 
 export type OrderProps = OrderStyleProps & {
   id: string;
@@ -30,6 +36,21 @@ export type OrderProps = OrderStyleProps & {
 type Props = {
   data: OrderProps;
 };
+
+function handleUpdateOrder({data}:Props) {
+  
+
+  firestore()
+  .collection('orders')
+  .doc(data.id)
+  .update({
+    status: 'closed',
+    created_at: firestore.FieldValue.serverTimestamp()
+  })
+  .then(() => Alert.alert("Atualizado", "Documento atualizado!") )
+  .catch((error) => console.log(error))
+  
+}
 
 export function Order({ data }: Props) {
   const theme = useTheme();
@@ -58,8 +79,9 @@ export function Order({ data }: Props) {
 
           <Info>
             <MaterialIcons name="person" size={16} color={theme.COLORS.SUBTEXT} />
-            <Label>
-            {data.responsavelEstoque}
+            <Label  >
+
+            {data.id}
             </Label>
           </Info>
 
