@@ -15,7 +15,7 @@ import {
   Footer,
   OrderStyleProps
 } from './styles';
-import { Alert, Button } from 'react-native';
+import { Alert, Button, TouchableOpacity } from 'react-native';
 
 
 /* 
@@ -59,7 +59,20 @@ export function Order({ data }: Props) {
     <Container>
       <Status status={data.status} />
 
-      <Content>
+      <Content  >
+        <TouchableOpacity onPress={() => { 
+
+            
+
+            firestore()
+            .collection('orders')
+            .doc(data.id)
+            .update({
+              status: 'open',
+              created_at: firestore.FieldValue.serverTimestamp()
+            })
+            .catch((error) => console.log(error))
+        }} >
         <Header>
           <Title> {data.patrimony} </Title>
           <MaterialIcons
@@ -92,6 +105,7 @@ export function Order({ data }: Props) {
             </Label>
           </Info>
         </Footer>
+        </TouchableOpacity>
       </Content>
     </Container>
   );
